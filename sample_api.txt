@@ -1,0 +1,13 @@
+    /*Sample API specification*/
+
+    /*Global variable*/
+username: string
+   
+    /*Function declaration*/
+login: string -> string
+
+    /*API specification*/
+LoginAPI:
+PRECONDITION: username
+login(username) ==> (OK, username)
+POSTCONDITION: username

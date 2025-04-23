@@ -1,0 +1,9 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/apple/Desktop/simpledeep'
+g++ -std=c++14 -Wall -I. -c main.cc
+g++ -std=c++14 -Wall -I. -c ast.cc
+g++ -std=c++14 -Wall -I. -c ASTVis.cc
+g++ -std=c++14 -Wall -I. -c simple_parser.cc
+g++ -std=c++14 -Wall -I. -o simple_parser_demo main.o ast.o ASTVis.o simple_parser.o
+make: Leaving directory `/Users/apple/Desktop/simpledeep'
+ 
