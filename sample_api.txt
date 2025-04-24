@@ -2,10 +2,10 @@
 //U : map;
 
 //Function declaration
-//signup : string -> string -> string;
+signup : string -> string -> string;
 
 // API specification
-SIGNUP_OK:
+//SIGNUP_OK:
 //PRECONDITION: U[uid] = NIL
 //signup(uid, p) ==> (OK)
 //POSTCONDITION: U' = U[uid -> p]
