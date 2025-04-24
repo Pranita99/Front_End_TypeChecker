@@ -1,34 +1,24 @@
 CXX = g++
-CXXFLAGS = -std=c++14 -Wall -I.
+CXXFLAGS = -std=c++14 -Wall -g
+LEX = flex
+YACC = bison
 
-TARGET = simple_parser_demo
+all: api_parser
 
-SOURCES = main.cc ast.cc ASTVis.cc simple_parser.cc
+# First, generate the parser
+parser.tab.cc parser.tab.hh: parser.yy
+	$(YACC) -d parser.yy
 
-OBJECTS = $(SOURCES:.cc=.o)
+# Then, generate the lexer (after parser.tab.hh is available)
+lex.yy.c: lexer.ll parser.tab.hh
+	$(LEX) -o lex.yy.c lexer.ll
 
-all: $(TARGET)
-
-$(TARGET): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
+# Build the parser
+api_parser: parser.tab.cc lex.yy.c ast.cc ASTVis.cc main.cc
+	$(CXX) $(CXXFLAGS) -o api_parser parser.tab.cc lex.yy.c ast.cc ASTVis.cc main.cc
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -f api_parser lex.yy.c parser.tab.cc parser.tab.hh
+	rm -f *.o *~
 
-run: $(TARGET)
-	./$(TARGET) sample_api.txt
-
-# Object rules
-main.o: main.cc simple_parser.hh ast.hh ASTVis.hpp
-	$(CXX) $(CXXFLAGS) -c main.cc
-
-ast.o: ast.cc ast.hh ASTVis.hpp
-	$(CXX) $(CXXFLAGS) -c ast.cc
-
-ASTVis.o: ASTVis.cc ASTVis.hpp
-	$(CXX) $(CXXFLAGS) -c ASTVis.cc
-
-simple_parser.o: simple_parser.cc simple_parser.hh ast.hh
-	$(CXX) $(CXXFLAGS) -c simple_parser.cc
-
-.PHONY: all clean run
+.PHONY: all clean

@@ -1,13 +1,11 @@
-    /*Sample API specification*/
+// Global variable
+//U : map;
 
-    /*Global variable*/
-username: string
-   
-    /*Function declaration*/
-login: string -> string
+//Function declaration
+//signup : string -> string -> string;
 
-    /*API specification*/
-LoginAPI:
-PRECONDITION: username
-login(username) ==> (OK, username)
-POSTCONDITION: username
+// API specification
+SIGNUP_OK:
+//PRECONDITION: U[uid] = NIL
+//signup(uid, p) ==> (OK)
+//POSTCONDITION: U' = U[uid -> p]
