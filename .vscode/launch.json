@@ -6,8 +6,13 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
+<<<<<<< HEAD
       "cwd": "/Users/apple/Desktop/simpledeep 2",
       "program": "/Users/apple/Desktop/simpledeep 2/build/Debug/outDebug"
+=======
+      "cwd": "/Users/apple/Desktop/simple",
+      "program": "/Users/apple/Desktop/simple/build/Debug/outDebug"
+>>>>>>> master
     }
   ]
 }
